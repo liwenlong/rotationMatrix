@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>title</title>
+</head>
+<body>
+<script type="text/javascript">
+ function setRect(n) {
+ 	var tNum = n-1,
+ 	    tSum=0,
+ 		maxCout = 3,  // 3此掉头
+ 		cWay = 1, //1 右  2、 下  3、左  4、上
+ 		arr = [],
+ 		isEnd=0;
+ 		x = 0,
+ 		y = 0;
+
+ 	function nextPos(x, y, cWay) {
+ 		var arrPos = [];
+ 		switch (cWay) {
+ 			case 1:
+ 				arrPos = [x, y + 1];
+ 				break;
+ 			case 2:
+ 				arrPos = [x + 1, y];
+ 				break;
+ 			case 3:
+ 				arrPos = [x, y - 1];
+ 				break;
+ 			case 4:
+ 				arrPos = [x - 1, y];
+ 				break;
+ 			default:
+ 				arrPos = [x + 1, y];
+ 		}
+ 		return arrPos;
+ 	}
+ 	function initArr(n){
+ 	   var arr=[];
+       for(var i=0;i<n;i++){
+      	 arr[i]=[];
+      	 for(var j=0;j<n;j++){
+      		 arr[i][j]=0;
+      	 }
+       }
+       return arr;
+ 	}
+ 	arr=initArr(n);
+ 	var preTrun=1;
+ 	while (!isEnd ) {
+ 		console.log(tSum);
+       arr[x][y]= ++tSum ;
+       var next=nextPos(x, y, cWay);
+       preTrun=1;
+       if(arr[next[0],next[1]]!==0){   //转向
+       	 cWay=(cWay+1)%4;
+       	 next=nextPos(x, y, cWay);
+       	 
+         if(!preTrun){
+         	isEnd=1;
+         }
+         preTrun=0;
+       }
+       x=next[0];
+       y=next[1]; 
+ 	}
+ 	return arr;
+ }
+  setRect(2);
+</script>
+</body>
+</html>
